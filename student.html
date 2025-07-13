@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - Course Registration System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #3498db;
+        }
+        main {
+            padding: 20px;
+            flex: 1;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            margin-top: auto;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            color: #3498db;
+        }
+        .student-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .student-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .student-info {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        .student-info h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .info-item {
+            padding: 1rem;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .info-item h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        .info-item p {
+            color: #666;
+            margin: 0;
+        }
+        .course-list {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .course-list h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .status {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        .status.enrolled {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .status.pending {
+            background-color: #FFA500;
+            color: white;
+        }
+        .status.completed {
+            background-color: #2196F3;
+            color: white;
+        }
+        button {
+            padding: 0.5rem 1rem;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #3498db;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">Course Registration System</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="student.html">Student Portal</a></li>
+                    <li><a href="index.html#courses">Courses</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="student-container">
+            <div class="student-header">
+                <h1>Student Portal</h1>
+                <button onclick="refreshData()">Refresh Data</button>
+            </div>
+
+            <div class="student-info">
+                <h2>Student Information</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h3>Student ID</h3>
+                        <p>STU12345</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Name</h3>
+                        <p>John Doe</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Email</h3>
+                        <p>john.doe@example.com</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Program</h3>
+                        <p>Computer Science</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-list">
+                <h2>Enrolled Courses</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Course Code</th>
+                            <th>Course Name</th>
+                            <th>Instructor</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CS101</td>
+                            <td>Introduction to Programming</td>
+                            <td>Dr. Smith</td>
+                            <td><span class="status enrolled">Enrolled</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button onclick="viewCourse('CS101')">View</button>
+                                    <button onclick="dropCourse('CS101')">Drop</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>CS201</td>
+                            <td>Data Structures</td>
+                            <td>Prof. Johnson</td>
+                            <td><span class="status pending">Pending</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button onclick="viewCourse('CS201')">View</button>
+                                    <button onclick="cancelRequest('CS201')">Cancel</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>CS301</td>
+                            <td>Database Systems</td>
+                            <td>Dr. Williams</td>
+                            <td><span class="status completed">Completed</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button onclick="viewCourse('CS301')">View</button>
+                                    <button onclick="viewGrade('CS301')">Grade</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="copyright">
+                © 2024 Course Registration System. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#help">Help Center</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function refreshData() {
+            // Here you would typically fetch updated data from the server
+            alert('Data refreshed successfully!');
+        }
+
+        function viewCourse(courseCode) {
+            // Here you would typically navigate to the course details page
+            alert(`Viewing details for course ${courseCode}`);
+        }
+
+        function dropCourse(courseCode) {
+            if (confirm(`Are you sure you want to drop ${courseCode}?`)) {
+                // Here you would typically send a request to drop the course
+                alert(`Successfully dropped ${courseCode}`);
+            }
+        }
+
+        function cancelRequest(courseCode) {
+            if (confirm(`Are you sure you want to cancel the request for ${courseCode}?`)) {
+                // Here you would typically send a request to cancel the enrollment request
+                alert(`Successfully cancelled request for ${courseCode}`);
+            }
+        }
+
+        function viewGrade(courseCode) {
+            // Here you would typically show the grade for the course
+            alert(`Viewing grade for ${courseCode}`);
+        }
+    </script>
+</body>
+</html> 
